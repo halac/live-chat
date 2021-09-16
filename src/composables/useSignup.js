@@ -13,6 +13,7 @@ const singup = async (email, password, displayName) => {
         console.log(res.user)
     } catch (err) {
         console.log(err.message)
+        error.value = err.message
     }
 }
 
