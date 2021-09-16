@@ -9,9 +9,12 @@
 
 <script>
 import { ref } from 'vue'
+import usesSingup from '../composables/useSignup'
+import useSingup from '../composables/useSignup'
 
 export default {
     setup() {
+        const {error, singup} = useSingup()
         // refs 
         const displayName = ref('')
         const email = ref('')
