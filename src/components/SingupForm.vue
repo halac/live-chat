@@ -14,7 +14,7 @@ import usesSingup from '../composables/useSignup'
 import useSingup from '../composables/useSignup'
 
 export default {
-    setup() {
+    setup(props, context) {
         const {error, singup} = useSingup()
         // refs 
         const displayName = ref('')
@@ -23,6 +23,9 @@ export default {
 
         const handleSubmit = async () => {
            await singup(email.value, password.value, displayName.value)
+            if(!error.value) {
+                context.emit('signup')
+            }
         }
 
         return {displayName, email, password, handleSubmit, error}
