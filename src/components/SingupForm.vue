@@ -10,7 +10,6 @@
 
 <script>
 import { ref } from 'vue'
-import usesSingup from '../composables/useSignup'
 import useSingup from '../composables/useSignup'
 
 export default {
