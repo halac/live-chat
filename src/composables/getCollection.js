@@ -7,7 +7,7 @@ const getCollection = (collection) => {
 
     let collectionRef = projectFirestore.collection(collection)
         .orderBy('createdAt')
-    collectionRef.onSnapshot(snap => {
+    const unsub = collectionRef.onSnapshot(snap => {
         console.log('Snapshot')
         let results = []
         snap.docs.forEach(doc => {
@@ -20,6 +20,10 @@ const getCollection = (collection) => {
         documents.value = null 
         error.value = 'could not fetch data'
     })
+    watchEffect((onInvalidate) => {
+    // unsub from prev collection when watcher is stopped (component unmounted)
+        onInvalidate(() => unsub());
+      });
     return {documents, error}
 }
 
