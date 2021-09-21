@@ -8,6 +8,7 @@ const getCollection = (collection) => {
     let collectionRef = projectFirestore.collection(collection)
         .orderBy('createdAt')
     collectionRef.onSnapshot(snap => {
+        console.log('Snapshot')
         let results = []
         snap.docs.forEach(doc => {
             doc.data().createdAt && results.push({ ...doc.data(), id: doc.id})
